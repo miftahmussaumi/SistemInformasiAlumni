@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Pengajuan_akun;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class Pengajuan_akunController extends Controller
 {
@@ -14,9 +16,17 @@ class Pengajuan_akunController extends Controller
      */
     public function index()
     {
-        //
+        return view('Mahasiswa.pengajuan');
     }
 
+    public function index2()
+    {
+        $dtPeng = Pengajuan_akun::all();
+        $akun = DB::table('pengajuan_akun')->get();
+        $jml_pengajuan = count(collect($akun));
+
+        return view('Admin.AccPengajuan',compact('dtPeng','jml_pengajuan'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -35,7 +45,24 @@ class Pengajuan_akunController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Pengajuan_akun::create([
+            'email'     => $request->email,
+            'nama'      => $request->nama,
+            'nim'       => $request->nim,
+            'thn_lulus' => $request->thn_lulus,
+            'password'  => bcrypt($request->password)
+        ]);
+
+        return back();
+    }
+
+    public function tolak(Request $request, $id)
+    {
+        $hapus = DB::table('pengajuan_akun')
+        ->where('id','=',$id)
+        ->delete();
+
+        return back();
     }
 
     /**

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Alumni;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class AlumniController extends Controller
 {
@@ -14,7 +16,17 @@ class AlumniController extends Controller
      */
     public function index()
     {
-        //
+        $dtAlumni = Alumni::all();
+        $akun = DB::table('pengajuan_akun')->get();
+        $jml_pengajuan = count(collect($akun));
+
+        return view('Admin.Alumni', compact('dtAlumni','jml_pengajuan')); 
+    }
+
+    public function index2()
+    {
+        $dtAlumni = Alumni::all();
+        return view('Mahasiswa.alumni', compact('dtAlumni'));
     }
 
     /**
@@ -33,9 +45,35 @@ class AlumniController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        $peng = DB::table('pengajuan_akun')
+        ->where('id','=',$id)
+        ->get([
+            'nama','nim','email','password','thn_lulus'
+        ]);
+
+        foreach ($peng as $key) {
+            $d_nama         = $key->nama;
+            $d_nim          = $key->nim;
+            $d_email        = $key->email;
+            $d_password     = $key->password;
+            $d_thn_lulus    = $key->thn_lulus;
+        }
+
+        Alumni::create([
+            'email'     => $d_email, 
+            'password'  => $d_password, 
+            'nama'      => $d_nama, 
+            'nim'       => $d_nim,
+            'thn_lulus' => $d_thn_lulus
+        ]);
+
+        $hapus = DB::table('pengajuan_akun')
+        ->where('id', '=', $id)
+        ->delete();
+
+        return back();
     }
 
     /**
@@ -78,8 +116,10 @@ class AlumniController extends Controller
      * @param  \App\Models\Alumni  $alumni
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Alumni $alumni)
+    public function destroy($id)
     {
-        //
+        $alumni = Alumni::findorfail($id);
+        $alumni->delete();
+        return back();
     }
 }

@@ -16,6 +16,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{asset('admin/plugins/fontawesome-free/css/all.min.css')}}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('admin/dist/css/adminlte.min.css')}}">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{asset('admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -32,32 +36,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
                 <!-- Notifications Dropdown Menu -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#">
-                        <i class="far fa-bell"></i>
-                        <span class="badge badge-warning navbar-badge">15</span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <span class="dropdown-header">15 Notifications</span>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-envelope mr-2"></i> 4 new messages
-                            <span class="float-right text-muted text-sm">3 mins</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-users mr-2"></i> 8 friend requests
-                            <span class="float-right text-muted text-sm">12 hours</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-file mr-2"></i> 3 new reports
-                            <span class="float-right text-muted text-sm">2 days</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-                    </div>
-                </li>
+                @yield('notifikasi')
                 <li class="nav-item">
                     <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                         <i class="fas fa-expand-arrows-alt"></i>
@@ -71,7 +50,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="index3.html" class="brand-link">
-                <img src="{{asset('admin/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <img src="{{asset('logo/logo2.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">JaLin</span>
             </a>
 
@@ -91,33 +70,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <li class="nav-item">
-                            <a href="widgets.html" class="nav-link">
-                                <i class="far fa-circle nav-icon""></i>
-                                <p>
-                                    Dashboard
-                                </p>
+                            <a href="{{route('dashboard')}}" class="nav-link">
+                                <i class="fas fa-home"></i>
+                                <p>Dashboard</p>
+                            </a>
+                        </li>
+                        <li class=" nav-item"><a href="{{route('list-alumni')}}" class="nav-link">
+                                <i class="fas fa-user-friends"></i>
+                                <p>Alumni</p>
                             </a>
                         </li>
                         <li class=" nav-item"><a href="widgets.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>
-                                            Alumni
-                                        </p>
-                                    </a>
-                        </li>
-                        <li class=" nav-item"><a href="widgets.html" class="nav-link">
-                                <i class="far fa-circle nav-icon""></i>
-                                <p>
-                                    Informasi
-                                </p>
+                                <i class="fas fa-newspaper"></i>
+                                <p>Informasi</p>
                             </a>
                         </li>
-                        <li class=" nav-item"><a href="widgets.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>
-                                            Logout
-                                        </p>
-                                    </a>
+                        <li class=" nav-item"><a href="{{route('logout')}}" class="nav-link">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <p> Logout </p>
+                            </a>
                         </li>
                     </ul>
                 </nav>
@@ -169,6 +140,40 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="{{asset('admin/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     <!-- AdminLTE App -->
     <script src="{{asset('admin/dist/js/adminlte.min.js')}}"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="{{asset('admin/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('admin/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+    <script src="{{asset('admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('admin/plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
+    <script src="{{asset('admin/plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('admin/plugins/jszip/jszip.min.js')}}"></script>
+    <script src="{{asset('admin/plugins/pdfmake/pdfmake.min.js')}}"></script>
+    <script src="{{asset('admin/plugins/pdfmake/vfs_fonts.js')}}"></script>
+    <script src="{{asset('admin/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
+    <script src="{{asset('admin/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
+    <script src="{{asset('admin/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="{{asset('admin/dist/js/demo.js')}}"></script>
+    <script>
+        $(function() {
+            $("#example1").DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        });
+    </script>
 </body>
 
 </html>
