@@ -42,8 +42,8 @@
                         <td>{{$data->thn_lulus}}</td>
                         <td>{{$data->email}}</td>
                         <td>
-                            <a href="{{url('terima-pengajuan', $data->id)}}" style="color:#8DDB69"><i class="fas fa-check"></i></a> ||
-                            <a href="{{url('tolak-pengajuan',$data->id)}}" style="color:#DC143C"><i class="fas fa-times"></i></a>
+                            <a href="{{url('terima-pengajuan', $data->id)}}" class="btn btn-success btn-sm m-b-10 m-l-5"><i class="fas fa-check"></i></a>
+                            <a href="{{url('tolak-pengajuan',$data->id)}}" class="btn btn-danger btn-sm m-b-10 m-l-5"><i class="fas fa-times"></i></a>
                         </td>
                     </tr>
                     @endforeach
@@ -52,5 +52,8 @@
         </div>
         <!-- /.card-body -->
     </div>
+    <script>
+        swal("Hello world!");
+    </script>
 </div>
 @endsection

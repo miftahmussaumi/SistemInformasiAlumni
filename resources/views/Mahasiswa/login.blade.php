@@ -13,7 +13,7 @@
     <meta name="author" content="tabthemes">
 
     <!-- Favicons -->
-    <link rel="shortcut icon" href="img/favicon.png">
+    <link rel="shortcut icon" href="{{asset('logo/logo2.png')}}">
     <link rel="apple-touch-icon" sizes="57x57" href="{{asset('web/img/apple-touch-icon-57x57.png')}}">
     <link rel="apple-touch-icon" sizes="72x72" href="{{asset('web/img/apple-touch-icon-72x72.png')}}">
     <link rel="apple-touch-icon" sizes="114x114" href="{{asset('web/img/apple-touch-icon-114x114.png')}}">
@@ -77,7 +77,7 @@
                             <div class="logo-container">
                                 <div class="logo-wrap local-scroll">
                                     <a href="index.html">
-                                        <img class="logo" src="img/logo.png" alt="logo" data-rjs="2">
+                                        <img class="logo" src="{{asset('logo/logo1.png')}}" alt="logo" data-rjs="2">
                                     </a>
                                 </div>
                             </div>
@@ -107,15 +107,14 @@
 
     <!-- Section Title Blog -->
     <div class="section-title-bg text-center m-bottom-40">
-        <h2 class="wow fadeInDown no-margin" data-wow-duration="1s" data-wow-delay="0.6s"><strong>Pendaftaran Akun Alumni</strong></h2>
+        <h2 class="wow fadeInDown no-margin" data-wow-duration="1s" data-wow-delay="0.6s"><strong>HALAMAN LOGIN</strong></h2>
         <div class="divider-center-small wow zoomIn" data-wow-duration="1s" data-wow-delay="0.6s"></div>
-        <p class="section-subtitle wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.6s">Mahasiswa yang sudah lulus dapat mengajuakn pendaftara akun alumni</p>
+        <p class="section-subtitle wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.6s">Alumni yang telah mendapatkan akun dapat login</p>
     </div>
 
 
     <!--BLog single section-->
     <section class="blog-index">
-
         <!--Container-->
         <div class="container clearfix">
             <div class="row m-bottom-40">
@@ -147,7 +146,6 @@
                         </table>
                     </div>
                 </form>
-
             </div> <!-- /.row -->
         </div> <!-- /.container -->
 

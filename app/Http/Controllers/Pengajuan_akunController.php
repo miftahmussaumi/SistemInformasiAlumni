@@ -50,7 +50,7 @@ class Pengajuan_akunController extends Controller
             'nama'      => $request->nama,
             'nim'       => $request->nim,
             'thn_lulus' => $request->thn_lulus,
-            'password'  => bcrypt($request->password)
+            'password'  => $request->password
         ]);
 
         return back();

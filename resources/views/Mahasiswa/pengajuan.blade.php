@@ -51,7 +51,7 @@
                                         <label>Password</label>
                                     </td>
                                     <td>
-                                        <input type="password" name="passwrod" placeholder="Input password">
+                                        <input type="password" name="password" placeholder="Input password">
                                     </td>
                                 </tr>
                                 <tr height="50px">
@@ -62,7 +62,6 @@
                             </table>
                         </div>
                     </form>
-
                 </div>
                 <!--End widget-->
             </div> <!-- /.col -->

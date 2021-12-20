@@ -8,7 +8,7 @@
 
     <title>@yield('title')</title>
 
-    <meta name="description" content="N.Agency - Responisve Landing Page for Agency">
+    <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="tabthemes">
 

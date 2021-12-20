@@ -7,13 +7,21 @@
     <div class="divider-center-small wow zoomIn" data-wow-duration="1s" data-wow-delay="0.6s"></div>
     <p class="section-subtitle wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.6s">Silahkan explore alumni favoritmu</p>
 </div>
-
-
 <!--BLog single section-->
 <section class="blog-index">
-
     <!--Container-->
     <div class="container clearfix">
+        <div class="row">
+            <div class="col-sm-4 sidebar">
+                <div class="widget widget-search">
+                    <form action="{{url('cari-alumni-mhs')}}" method="GET" class="search-form">
+                        <input type="text" name="cari" placeholder="Cari Alumni..." value="{{old('cari')}}">
+                        <input type="submit" class="submit-search" value="Ok">
+                    </form>
+                </div>
+                <!--End widget-->
+            </div>
+        </div>
         <div class="row m-bottom-40">
             <table id="example2" class="table table-bordered table-hover">
                 <thead>
@@ -22,11 +30,12 @@
                         <th>Nama</th>
                         <th>Nim</th>
                         <th>Tahun Lulus</th>
-                        <th>email</th>
+                        <th>Email</th>
+                        <th>Opsi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $no=1;?>
+                    <?php $no = 1; ?>
                     @foreach ($dtAlumni as $data)
                     <tr>
                         <td>{{$no++}}</td>
@@ -34,6 +43,9 @@
                         <td>{{$data->nim}}</td>
                         <td>{{$data->thn_lulus}}</td>
                         <td>{{$data->email}}</td>
+                        <td>
+                            <a href="{{url('detail-alumni-mhs',$data->id)}}">Detail</a>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>

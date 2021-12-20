@@ -43,7 +43,8 @@
                         <td>{{$data->thn_lulus}}</td>
                         <td>{{$data->email}}</td>
                         <td>
-                            <a href="{{url('hapus-alumni', $data->id)}}" onclick="return confirm('Yakin ingin menghapus data ini?')" style="color:#dc3545"><i class="fas fa-trash"></i></a>
+                            <a href="{{url('hapus-alumni', $data->id)}}" onclick="return confirm('Yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm m-b-10 m-l-5"><i class="fas fa-trash"></i></a>
+                            <a href="{{url('detail-alumni-admin', $data->id)}}" class="btn btn-warning btn-sm m-b-10 m-l-5"><i class="far fa-eye"></i></a>
                         </td>
                     </tr>
                     @endforeach

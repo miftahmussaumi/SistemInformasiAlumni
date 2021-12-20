@@ -1,5 +1,4 @@
 @extends('Template.admin')
-
 @section('title','Pengajuan')
 @section('judul_atas')
 <h1>Pengajuan Akun Alumni</h1>
@@ -21,5 +20,12 @@
 </li>
 @endsection
 @section('container')
+@endsection
+
+//-----------------------------------------------------------------------------
+
+@extends('Template.web')
+@section('title','')
+@section('isi blog')
 
 @endsection
