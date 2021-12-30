@@ -16,9 +16,11 @@
         <div class="row">
             <div class="col-sm-4 sidebar">
                 <div class="team-item wow zoomIn" data-wow-duration="1s" data-wow-delay="0.9s">
+                    @foreach($profil as $dt)
                     <div class="team-item-image">
-                        <img src="{{asset('web/img/team/3.jpg')}}" alt="" />
+                        <img src="{{asset('img/alumni/'. $dt->foto)}}" alt="Alumni belum meng-upload foto" />
                     </div>
+                    @endforeach
                     <div class="team-item-info">
                         @foreach($profil as $data)
                         <div class="team-item-name">

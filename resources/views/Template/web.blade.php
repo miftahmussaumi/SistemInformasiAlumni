@@ -88,7 +88,6 @@
 
                                 <ul class="nav navbar-nav navbar-right">
                                     <li><a href="{{route('webHome')}}">Home</a></li>
-                                    <li><a href="index.html#service">About</a></li>
                                     <li><a href="{{route('webAlumni')}}">Alumni</a></li>
                                     <li><a href="{{route('webLogin')}}">Login</a></li>
                                 </ul>
@@ -140,7 +139,7 @@
 
     <!-- Custom Plugin -->
     <script src="{{asset('web/js/custom.js')}}"></script>
-
+    @include('sweetalert::alert')
 </body>
 
 </html>

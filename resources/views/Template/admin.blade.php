@@ -20,6 +20,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{asset('admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
+    <!-- summernote -->
+    <link rel="stylesheet" href="{{asset('admin/plugins/summernote/summernote-bs4.min.css')}}">
+    <!-- SimpleMDE -->
+    <link rel="stylesheet" href="{{asset('admin/plugins/simplemde/simplemde.min.css')}}">
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -80,7 +84,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <p>Alumni</p>
                             </a>
                         </li>
-                        <li class=" nav-item"><a href="widgets.html" class="nav-link">
+                        <li class=" nav-item"><a href="{{route('informasi-adm')}}" class="nav-link">
                                 <i class="fas fa-newspaper"></i>
                                 <p>Informasi</p>
                             </a>
@@ -106,12 +110,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <div class="col-sm-6">
                             @yield('judul_atas')
                         </div><!-- /.col -->
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">@yield('judul_samping')</li>
-                            </ol>
-                        </div><!-- /.col -->
+                        @yield('menu_samping')
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
             </div>
@@ -155,6 +154,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="{{asset('admin/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{asset('admin/dist/js/demo.js')}}"></script>
+    <!-- Summernote -->
+    <script src="{{asset('admin/plugins/summernote/summernote-bs4.min.js')}}"></script>
+    <!-- bs-custom-file-input -->
+    <script src="{{asset('admin/plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
+    <!-- daterangepicker -->
+    <script src="{{asset('admin/plugins/moment/moment.min.js')}}"></script>
+    <script src="{{asset('admin/plugins/daterangepicker/daterangepicker.js')}}"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="{{asset('admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
+    <script>
+        $(function() {
+            bsCustomFileInput.init();
+        });
+    </script>
     <script>
         $(function() {
             $("#example1").DataTable({
@@ -174,7 +187,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
             });
         });
     </script>
+    <script>
+        $(function() {
+            // Summernote
+            $('#summernote').summernote()
+        })
+    </script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    @include('sweetalert::alert')
 </body>
 
 </html>

@@ -1,10 +1,16 @@
 @extends('Template.admin')
 
-@section('title','Pengajuan')
+@section('title','Welcome')
 @section('judul_atas')
-<h1>Pengajuan Akun Alumni</h1>
+<h1>Selamat Datang di Sistem Informasi Alumni </h1>
 @endsection
-@section('judul_samping','Pengajuan Akun')
+@section('menu_samping')
+<div class="col-sm-6">
+    <ol class="breadcrumb float-sm-right">
+        <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
+    </ol>
+</div>
+@endsection
 @section('notifikasi')
 <li class="nav-item dropdown">
     <a class="nav-link" data-toggle="dropdown" href="#">
@@ -25,14 +31,13 @@
     <!-- small box -->
     <div class="small-box bg-info">
         <div class="inner">
-            <h3>150</h3>
-
-            <p>New Orders</p>
+            <h3>{{$jml_alumni}}</h3>
+            <p>Alumni</p>
         </div>
         <div class="icon">
-            <i class="ion ion-bag"></i>
+            <i class="fas fa-user-friends"></i>
         </div>
-        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        <a href="/list-alumni" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
 </div>
 <!-- ./col -->
@@ -40,14 +45,13 @@
     <!-- small box -->
     <div class="small-box bg-success">
         <div class="inner">
-            <h3>53<sup style="font-size: 20px">%</sup></h3>
-
-            <p>Bounce Rate</p>
+            <h3>{{$jml_info}}</h3>
+            <p>Informasi</p>
         </div>
         <div class="icon">
-            <i class="ion ion-stats-bars"></i>
+            <i class="fas fa-newspaper"></i>
         </div>
-        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        <a href="informasi-adm" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
 </div>
 <!-- ./col -->
@@ -55,30 +59,13 @@
     <!-- small box -->
     <div class="small-box bg-warning">
         <div class="inner">
-            <h3>44</h3>
-
-            <p>User Registrations</p>
+            <h3>{{$jml_pengajuan}}</h3>
+            <p>Pengajuan Akun</p>
         </div>
         <div class="icon">
-            <i class="ion ion-person-add"></i>
+            <i class="fas fa-user-plus"></i>
         </div>
-        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        <a href="/list-pengajuan" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
 </div>
-<!-- ./col -->
-<div class="col-lg-3 col-6">
-    <!-- small box -->
-    <div class="small-box bg-danger">
-        <div class="inner">
-            <h3>65</h3>
-
-            <p>Unique Visitors</p>
-        </div>
-        <div class="icon">
-            <i class="ion ion-pie-graph"></i>
-        </div>
-        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-    </div>
-</div>
-<!-- ./col -->
 @endsection

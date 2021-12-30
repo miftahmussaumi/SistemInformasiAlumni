@@ -19,7 +19,7 @@
                                         <label>Nama</label>
                                     </td>
                                     <td>
-                                        <input type="text" name="nama" placeholder="Nama Mahasiswa">
+                                        <input type="text" name="nama" placeholder="Nama Mahasiswa" required>
                                     </td>
                                 </tr>
                                 <tr height="30px">
@@ -27,7 +27,7 @@
                                         <label>Nim</label>
                                     </td>
                                     <td>
-                                        <input type="text" name="nim" placeholder="Nim Mahasiswa">
+                                        <input type="text" name="nim" placeholder="Nim Mahasiswa" maxlength="10" required>
                                     </td>
                                 </tr>
                                 <tr height="30px">
@@ -35,7 +35,7 @@
                                         <label>Tahun Lulus</label>
                                     </td>
                                     <td>
-                                        <input type="text" name="thn_lulus" placeholder="Tahun Lulus Mahasiswa">
+                                        <input type="text" name="thn_lulus" placeholder="Tahun Lulus Mahasiswa" maxlength="4" required>
                                     </td>
                                 </tr>
                                 <tr height="30px">
@@ -43,7 +43,7 @@
                                         <label>Email</label>
                                     </td>
                                     <td>
-                                        <input type="text" name="email" placeholder="xxxx@gmail.com">
+                                        <input type="email" name="email" placeholder="xxxx@gmail.com" required>
                                     </td>
                                 </tr>
                                 <tr height="30px">
@@ -51,7 +51,8 @@
                                         <label>Password</label>
                                     </td>
                                     <td>
-                                        <input type="password" name="password" placeholder="Input password">
+                                        <input type="password" name="password" placeholder="Input password" required>
+                                        <input type="hidden" name="foto" value="default.jpg">
                                     </td>
                                 </tr>
                                 <tr height="50px">

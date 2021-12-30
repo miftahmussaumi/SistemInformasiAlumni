@@ -15,19 +15,25 @@
             <div class="col-sm-4 sidebar">
                 <div class="team-item wow zoomIn" data-wow-duration="1s" data-wow-delay="0.9s">
                     <div class="team-item-image">
-                        <img src="{{asset('web/img/team/3.jpg')}}" alt="" />
+                        <img src="{{asset('img/alumni/'. $data->foto)}}" alt="Silahkan Meng-Upload Foto Profil" />
                     </div>
                     <div class="team-item-info">
                         <div class="team-item-name">
                             Ganti Foto <br>
                         </div>
                         <div class="team-item-info">
-                            <table style="margin-left: 20px;">
-                                <tr>
-                                    <td><input type="file"></td>
-                                    <td> <button type="submit" class="send_message btn btn-main btn-theme wow fadeInUp">SAVE</button></td>
-                                </tr>
-                            </table>
+                            <form action="{{url('profil-edit-foto', $data->id)}}" method="POST" enctype="multipart/form-data">
+                                {{csrf_field()}}
+                                <table style="margin-left: 20px;">
+                                    <tr>
+                                        <td>
+                                            <input type="file" name="foto" class="custom-file-input" id="customFile" accept="image/*">
+                                            <input type="hidden" id="hidden_image" name="hidden_image_foto" value="{{$data->foto}}">
+                                        </td>
+                                        <td> <button type="submit" class="send_message btn btn-main btn-theme wow fadeInUp">SAVE</button></td>
+                                    </tr>
+                                </table>
+                            </form>
                         </div>
                     </div>
                 </div><br>
@@ -50,7 +56,7 @@
                                     <p style="font-size: 15px;"><strong>Nama </strong></p>
                                 </td>
                                 <td>
-                                    <input type="text" size="40" name="nama" value="{{$data->nama}}">
+                                    <input type="text" size="40" name="nama" value="{{$data->nama}}" required>
                                 </td>
                             </tr>
                             <tr>
@@ -58,7 +64,7 @@
                                     <p style="font-size: 15px;"><strong>Nim </strong></p>
                                 </td>
                                 <td>
-                                    <input type="text" size="40" name="nim" maxlength="10" value="{{$data->nim}}">
+                                    <input type="text" size="40" name="nim" maxlength="10" value="{{$data->nim}}" required>
                                 </td>
                             </tr>
                             <tr>
@@ -66,7 +72,7 @@
                                     <p style="font-size: 15px;"><strong>IPK </strong></p>
                                 </td>
                                 <td>
-                                    <input type="text" size="40" name="ipk" maxlength="4" value="{{$data->ipk}}">
+                                    <input type="text" size="40" name="ipk" maxlength="4" value="{{$data->ipk}}" required>
                                 </td>
                             </tr>
                             <tr>
@@ -74,7 +80,7 @@
                                     <p style="font-size: 15px;"><strong>Tahun Lulus </strong></p>
                                 </td>
                                 <td>
-                                    <input type="text" size="40" name="thn_lulus" maxlength="4" value="{{$data->thn_lulus}}">
+                                    <input type="text" size="40" name="thn_lulus" maxlength="4" value="{{$data->thn_lulus}}" required>
                                 </td>
                             </tr>
                             <tr>
@@ -82,7 +88,7 @@
                                     <p style="font-size: 15px;"><strong>Pekerjaan </strong></p>
                                 </td>
                                 <td>
-                                    <input type="text" size="40" name="pekerjaan" value="{{$data->pekerjaan}}">
+                                    <input type="text" size="40" name="pekerjaan" value="{{$data->pekerjaan}}" required>
                                 </td>
                             </tr>
                             <tr>
@@ -90,7 +96,7 @@
                                     <p style="font-size: 15px;"><strong>Tempat Kerja </strong></p>
                                 </td>
                                 <td>
-                                    <input type="text" size="40" name="tpt_kerja" value="{{$data->tpt_kerja}}">
+                                    <input type="text" size="40" name="tpt_kerja" value="{{$data->tpt_kerja}}" required>
                                 </td>
                             </tr>
                             <tr>
@@ -98,7 +104,7 @@
                                     <p style="font-size: 15px;"><strong>Nomor Hp </strong></p>
                                 </td>
                                 <td>
-                                    <input type="text" size="40" name="no_hp" value="{{$data->no_hp}}">
+                                    <input type="text" size="40" name="no_hp" value="{{$data->no_hp}}" required>
                                 </td>
                             </tr>
                             <tr>
@@ -106,8 +112,11 @@
                                     <p style="font-size: 15px;"><strong>Jenis Kelamin </strong></p>
                                 </td>
                                 <td>
-                                    <input type="radio" name="jk" value="Laki-Laki"> Laki-Laki
-                                    <input type="radio" name="jk" value="Perempuan"> Perempuan
+                                    <select name="jk">
+                                        <option selected disabled>-Jenis Kelamin-</option>
+                                        <option value="Laki-Laki" {{"Laki-Laki"==$data->jk ? 'selected' : ''}}>Laki-Laki</option>
+                                        <option value="Perempuan" {{"Perempuan"==$data->jk ? 'selected' : ''}}>Perempuan</option>
+                                    </select>
                                 </td>
                             </tr>
                             <tr>
@@ -115,7 +124,7 @@
                                     <p style="font-size: 15px;"><strong>Tempat Lahir </strong></p>
                                 </td>
                                 <td>
-                                    <input type="text" size="40" name="tempat_lahir" value="{{$data->tempat_lahir}}">
+                                    <input type="text" size="40" name="tempat_lahir" value="{{$data->tempat_lahir}}" required>
                                 </td>
                             </tr>
                             <tr>
@@ -123,7 +132,7 @@
                                     <p style="font-size: 15px;"><strong>Tanggal Lahir </strong></p>
                                 </td>
                                 <td>
-                                    <input type="date" size="40" name="tgl_lahir" value="{{$data->tgl_lahir}}">
+                                    <input type="date" size="40" name="tgl_lahir" value="{{$data->tgl_lahir}}" required>
                                 </td>
                             </tr>
                             <tr>
@@ -166,7 +175,7 @@
                                     <p style="font-size: 15px;">Instagram</p>
                                 </td>
                                 <td>
-                                    <input type="text" size="40" name="instagram" placeholder="Username Instagaram" value="{{$data->instagram}}">
+                                    <input type="text" size="40" name="instagram" placeholder="Username Instagaram" value="{{$data->instagram}}" required>
                                 </td>
                             </tr>
                             <tr>
@@ -174,7 +183,7 @@
                                     <p style="font-size: 15px;">LinkedIn</p>
                                 </td>
                                 <td>
-                                    <input type="text" size="40" name="linkedin" placeholder="Username LinkedIn" value="{{$data->linkedin}}">
+                                    <input type="text" size="40" name="linkedin" placeholder="Username LinkedIn" value="{{$data->linkedin}}" required>
                                 </td>
                             </tr>
                         </table>

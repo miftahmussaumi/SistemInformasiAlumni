@@ -9,11 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class Pengajuan_akunController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         return view('Mahasiswa.pengajuan');
@@ -27,22 +22,23 @@ class Pengajuan_akunController extends Controller
 
         return view('Admin.AccPengajuan',compact('dtPeng','jml_pengajuan'));
     }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+
+    public function konfirmasitolak($id)
     {
-        //
+        alert()->question('Anda yakin ingin menolak Pengajuan Akun?')
+        ->showConfirmButton('<a href="/tolak-pengajuan/'.$id.')}}" class="text-white">Tolak</a>', '#3085d6')->toHtml()
+        ->showCancelButton('Cancel', '#aaa')->reverseButtons();
+        return back();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    public function konfirmasiterima($id)
+    {
+        alert()->question('Anda yakin ingin Menerima Pengajuan Akun?')
+        ->showConfirmButton('<a href="/terima-pengajuan/'.$id.')}}" class="text-white">Terima</a>', '#3085d6')->toHtml()
+        ->showCancelButton('Cancel', '#aaa')->reverseButtons();
+        return back();
+    }
+
     public function store(Request $request)
     {
         Pengajuan_akun::create([
@@ -50,10 +46,10 @@ class Pengajuan_akunController extends Controller
             'nama'      => $request->nama,
             'nim'       => $request->nim,
             'thn_lulus' => $request->thn_lulus,
-            'password'  => $request->password
-        ]);
-
-        return back();
+            'password'  => $request->password,
+            'foto'      => $request->foto
+        ]); 
+        return back()->with('success', 'Pengajuan Akun Berhasil Diterima!');
     }
 
     public function tolak(Request $request, $id)
@@ -62,51 +58,6 @@ class Pengajuan_akunController extends Controller
         ->where('id','=',$id)
         ->delete();
 
-        return back();
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Pengajuan_akun  $pengajuan_akun
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Pengajuan_akun $pengajuan_akun)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Pengajuan_akun  $pengajuan_akun
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Pengajuan_akun $pengajuan_akun)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Pengajuan_akun  $pengajuan_akun
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Pengajuan_akun $pengajuan_akun)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Pengajuan_akun  $pengajuan_akun
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Pengajuan_akun $pengajuan_akun)
-    {
-        //
+        return back()->with('success', 'Pengajuan Akun Berhasil Ditolak!');
     }
 }

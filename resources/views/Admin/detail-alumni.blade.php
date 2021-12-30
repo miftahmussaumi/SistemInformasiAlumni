@@ -3,7 +3,15 @@
 @section('judul_atas')
 <h1>Detail Alumni</h1>
 @endsection
-@section('judul_samping','Detail Alumni')
+@section('menu_samping')
+<div class="col-sm-6">
+    <ol class="breadcrumb float-sm-right">
+        <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{route('list-alumni')}}">Alumni</a></li>
+        <li class="breadcrumb-item">Detail </li>
+    </ol>
+</div>
+@endsection
 @section('notifikasi')
 <li class="nav-item dropdown">
     <a class="nav-link" data-toggle="dropdown" href="#">
@@ -23,11 +31,12 @@
 <div class="col-12">
     <div class="card">
         <div class="card-body">
-            <a href="/list-alumni"><strong><< BACK</strong></a><br><br>
+            <a href="/list-alumni"><strong>
+                    << BACK</strong></a><br><br>
             @foreach($profil as $data1)
             <div class="row">
                 <div class="col-sm-4 sidebar">
-                    <img src="{{asset('web/img/team/3.jpg')}}" width="300" height="300" /><br><br>
+                    <img src="{{asset('img/alumni/'. $data1->foto)}}" alt="Alumni belum meng-upload foto" width="300" height="300" /><br><br>
                     <h4>About Me!</h4>
                     <table style="margin-left: 30px;">
                         <tr>{!! $data1->about !!}</tr>

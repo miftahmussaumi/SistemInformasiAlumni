@@ -4,7 +4,14 @@
 @section('judul_atas')
 <h1>Pengajuan Akun Alumni</h1>
 @endsection
-@section('judul_samping','Pengajuan Akun')
+@section('menu_samping')
+<div class="col-sm-6">
+    <ol class="breadcrumb float-sm-right">
+        <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
+        <li class="breadcrumb-item">Pengajuan Akun</li>
+    </ol>
+</div>
+@endsection
 @section('notifikasi')
 <li class="nav-item dropdown">
     <a class="nav-link" data-toggle="dropdown" href="#">
@@ -43,7 +50,7 @@
                         <td>{{$data->email}}</td>
                         <td>
                             <a href="{{url('terima-pengajuan', $data->id)}}" class="btn btn-success btn-sm m-b-10 m-l-5"><i class="fas fa-check"></i></a>
-                            <a href="{{url('tolak-pengajuan',$data->id)}}" class="btn btn-danger btn-sm m-b-10 m-l-5"><i class="fas fa-times"></i></a>
+                            <a href="{{url('konfirmasi-tolak',$data->id)}}" class="btn btn-danger btn-sm m-b-10 m-l-5"><i class="fas fa-times"></i></a>
                         </td>
                     </tr>
                     @endforeach

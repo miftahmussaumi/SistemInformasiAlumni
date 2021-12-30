@@ -80,7 +80,7 @@
                                 <ul class="nav navbar-nav navbar-right">
                                     <li><a href="/alumni">Home</a></li>
                                     <li><a href="/daftar-alumni">Alumni</a></li>
-                                    <li><a href="#">Informasi</a></li>
+                                    <li><a href="/informasi">Informasi</a></li>
                                     <li><a href="/profil-alumni">Profil</a></li>
                                     <li><a href="/logout">Logout</a></li>
                                 </ul>
@@ -239,7 +239,7 @@
             }
         }); /*ready*/
     </script>
-
+    @include('sweetalert::alert')
 </body>
 
 </html>

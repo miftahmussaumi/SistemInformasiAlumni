@@ -6,13 +6,15 @@ use App\Models\Alumni;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use SebastianBergmann\Type\ObjectType;
 
 class AlumniController extends Controller
 {
     //FOR ADMIN
     public function index()
     {
-        $dtAlumni = Alumni::all();
+        $dtAlumni = Alumni::all()
+        ->whereNotIn('id', [1]);
         $akun = DB::table('pengajuan_akun')->get();
         $jml_pengajuan = count(collect($akun));
 
@@ -22,14 +24,16 @@ class AlumniController extends Controller
     //FOR MAHASISWA
     public function index2()
     {
-        $dtAlumni = Alumni::all();
+        $dtAlumni = Alumni::all()
+        ->whereNotIn('id', [1]);
         return view('Mahasiswa.alumni', compact('dtAlumni'));
     }
 
     // FOR ALUMNI
     public function index3()
     {
-        $dtAlumni = Alumni::all();
+        $dtAlumni = Alumni::all()
+        ->whereNotIn('id', [1]);
         return view('Alumni.alumni', compact('dtAlumni'));
     }
 
@@ -43,7 +47,7 @@ class AlumniController extends Controller
     public function edit()
     {
         $profil = Alumni::all()
-            ->where('id', '=', Auth::guard('alumni')->user()->id);
+        ->where('id', '=', Auth::guard('alumni')->user()->id);
         return view('Alumni.profil-edit', compact('profil'));
     }
 
@@ -68,14 +72,14 @@ class AlumniController extends Controller
             'password'  => bcrypt($d_password), 
             'nama'      => $d_nama, 
             'nim'       => $d_nim,
-            'thn_lulus' => $d_thn_lulus
+            'thn_lulus' => $d_thn_lulus,
         ]);
 
         $hapus = DB::table('pengajuan_akun')
         ->where('id', '=', $id)
         ->delete();
 
-        return back();
+        return back()->with('success', 'Pengajuan Akun Berhasil Diterima!');;
     }
 
     public function detail1($id)
@@ -113,7 +117,14 @@ class AlumniController extends Controller
         ->orWhere('thn_lulus', 'LIKE', "%" . $cari . "%")
         ->get();
 
-        return view('Mahasiswa.hasil-cari', compact('dtAlumni'));
+        $hasil = count(collect($dtAlumni));
+        if($hasil>0){
+            return view('Mahasiswa.hasil-cari', compact('dtAlumni'));
+        } else {
+            alert()->warning('Warning', 'Alumni Tidak Ditemukan');
+            return back();
+        }
+
     }
 
     public function cari2(Request $request)
@@ -125,14 +136,21 @@ class AlumniController extends Controller
             ->orWhere('thn_lulus', 'LIKE', "%" . $cari . "%")
             ->get();
 
-        return view('Alumni.hasil-cari', compact('dtAlumni'));
+        $hasil = count(collect($dtAlumni));
+        if ($hasil > 0) {
+            return view('Alumni.hasil-cari', compact('dtAlumni'));
+        } else {
+            alert()->warning('Warning', 'Alumni Tidak Ditemukan');
+            return back();
+        }
     }
 
     public function updateprofil(Request $request, $id)
     {
+
         $profil = Alumni::findorfail($id);
         $profil->update($request->all());
-        return redirect('profil-alumni');
+        return redirect('profil-alumni')->with('success', 'Profil Berhasil DiUpdate!');
     }
 
     public function updateabout(Request $request, $id)
@@ -142,6 +160,47 @@ class AlumniController extends Controller
         ->update([
             'about' => $request->about
         ]);
+        return back()->with('success', 'About Berhasil Diupdate!');
+    }
+
+    public function updatefoto(Request $request, $id)
+    {
+        $dtAlumni = DB::table('alumni')
+        ->where('id', '=', $id)
+        ->get([
+            'foto', 'id'
+        ]);
+
+        foreach ($dtAlumni as $agt) {
+            $foto = $agt->foto;
+        }
+
+        $newfoto = $request->foto;
+        if ($newfoto != '' ) {
+            $extension = $newfoto->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+            $newfoto->move(public_path() . '/img/alumni', $filename);
+            
+            $update = DB::table('alumni')
+            ->where('id', '=', $id)
+            ->update([
+                'foto' => $filename
+            ]);
+            
+            $old_image_name_foto = $request->hidden_image_foto;
+            unlink(public_path('img/alumni/' . $old_image_name_foto));
+
+            return back()->with('success', 'Foto Berhasil Diupdate!');
+        } else {
+            return back();
+        }
+    }
+
+    public function konfirmasihapus($id)
+    {
+        alert()->question('Anda yakin ingin Menghapus Alumni?')
+            ->showConfirmButton('<a href="/hapus-alumni/' . $id . ')}}" class="text-white">Hapus</a>', '#3085d6')->toHtml()
+            ->showCancelButton('Cancel', '#aaa')->reverseButtons();
         return back();
     }
 
@@ -149,6 +208,6 @@ class AlumniController extends Controller
     {
         $alumni = Alumni::findorfail($id);
         $alumni->delete();
-        return back();
+        return back()->with('success', 'Data Alumni Berhasil Dihapus!');
     }
 }

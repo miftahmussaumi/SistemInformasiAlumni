@@ -4,7 +4,14 @@
 @section('judul_atas')
 <h1>Data Alumni</h1>
 @endsection
-@section('judul_samping','Data Alumni')
+@section('menu_samping')
+<div class="col-sm-6">
+    <ol class="breadcrumb float-sm-right">
+        <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
+        <li class="breadcrumb-item">Alumni</li>
+    </ol>
+</div>
+@endsection
 @section('notifikasi')
 <li class="nav-item dropdown">
     <a class="nav-link" data-toggle="dropdown" href="#">
@@ -43,7 +50,7 @@
                         <td>{{$data->thn_lulus}}</td>
                         <td>{{$data->email}}</td>
                         <td>
-                            <a href="{{url('hapus-alumni', $data->id)}}" onclick="return confirm('Yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm m-b-10 m-l-5"><i class="fas fa-trash"></i></a>
+                            <a href="{{url('konfirmasi-hapus', $data->id)}}" class="btn btn-danger btn-sm m-b-10 m-l-5"><i class="fas fa-trash"></i></a>
                             <a href="{{url('detail-alumni-admin', $data->id)}}" class="btn btn-warning btn-sm m-b-10 m-l-5"><i class="far fa-eye"></i></a>
                         </td>
                     </tr>

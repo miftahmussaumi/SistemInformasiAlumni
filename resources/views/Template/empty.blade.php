@@ -3,7 +3,14 @@
 @section('judul_atas')
 <h1>Pengajuan Akun Alumni</h1>
 @endsection
-@section('judul_samping','Pengajuan Akun')
+@section('menu_samping')
+<div class="col-sm-6">
+    <ol class="breadcrumb float-sm-right">
+        <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
+        <li class="breadcrumb-item"> </li>
+    </ol>
+</div>
+@endsection
 @section('notifikasi')
 <li class="nav-item dropdown">
     <a class="nav-link" data-toggle="dropdown" href="#">

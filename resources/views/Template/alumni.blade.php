@@ -88,7 +88,7 @@
                                 <ul class="nav navbar-nav navbar-right">
                                     <li><a href="/alumni">Home</a></li>
                                     <li><a href="/daftar-alumni">Alumni</a></li>
-                                    <li><a href="#">Informasi</a></li>
+                                    <li><a href="/informasi">Informasi</a></li>
                                     <li><a href="/profil-alumni">Profil</a></li>
                                     <li><a href="/logout">Logout</a></li>
                                 </ul>
@@ -148,7 +148,7 @@
     <script src="{{asset('web/inc/revolution/js/extensions/revolution.extension.navigation.min.js')}}"></script>
     <script src="{{asset('web/inc/revolution/js/extensions/revolution.extension.migration.min.js')}}"></script>
     <script src="{{asset('web/inc/revolution/js/extensions/revolution.extension.parallax.min.js')}}"></script>
-
+    @include('sweetalert::alert')
 </body>
 
 </html>

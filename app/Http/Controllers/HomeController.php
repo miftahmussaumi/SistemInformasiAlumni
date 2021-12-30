@@ -12,7 +12,13 @@ class HomeController extends Controller
         $akun = DB::table('pengajuan_akun')->get();
         $jml_pengajuan = count(collect($akun));
 
-        return view('Admin.dashboard', compact('jml_pengajuan'));
+        $alumni = DB::table('alumni')->get();
+        $jml_alumni = count(collect($alumni))-1;
+
+        $informasi = DB::table('informasi')->get();
+        $jml_info = count(collect($informasi));
+
+        return view('Admin.dashboard', compact('jml_pengajuan','jml_alumni','jml_info'));
     }
 
     public function webHome()

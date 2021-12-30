@@ -121,26 +121,27 @@
                 <form action="{{route('postlogin')}}" method="post">
                     {{csrf_field()}}
                     <div class="card-body">
-                        <table>
+                        <table style="margin-left: 300px;" cellpadding="200;">
                             <tr>
                                 <td>
-                                    <div class="form-group">
-                                        <label>Email</label>
-                                        <input type="text" name="email" placeholder="xxxx@gmail.com">
-                                    </div>
+                                    <p style="font-size: 30px;"><strong>Email </strong></p>
+                                </td>
+                                <td>
+                                    <input type="email" name="email" placeholder="xxxx@gmail.com" size="50" height="20">
                                 </td>
                             </tr>
                             <tr>
+                                <td style="width: 200px;">
+                                    <p style="font-size: 30px;"><strong>Password </strong></p>
+                                </td>
                                 <td>
-                                    <div class="form-group">
-                                        <label>Password</label>
-                                        <input type="password" name="password" placeholder="Input password">
-                                    </div>
+                                    <input type="password" name="password" placeholder="Input password" size="50">
                                 </td>
                             </tr>
                             <tr>
+                                <td></td>
                                 <td>
-                                    <button type="submit" class="btn btn-success">Submit</button>
+                                    <button type="submit" class="send_message btn btn-main btn-theme wow fadeInUp">Submit</button>
                                 </td>
                             </tr>
                         </table>
@@ -179,7 +180,7 @@
 
     <!-- Custom Plugin -->
     <script src="{{asset('web/js/custom.js')}}"></script>
-
+    @include('sweetalert::alert')
 </body>
 
 </html>
