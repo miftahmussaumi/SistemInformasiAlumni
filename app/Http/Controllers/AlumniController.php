@@ -176,7 +176,19 @@ class AlumniController extends Controller
         }
 
         $newfoto = $request->foto;
-        if ($newfoto != '' ) {
+
+        if($foto == ''){
+            $extension = $newfoto->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+            $newfoto->move(public_path() . '/img/alumni', $filename);
+
+            $update = DB::table('alumni')
+                ->where('id', '=', $id)
+                ->update([
+                    'foto' => $filename
+                ]);
+            return back()->with('success', 'Foto Berhasil Diupdate!');
+        } else if ($newfoto != '' ) {
             $extension = $newfoto->getClientOriginalExtension();
             $filename = time() . '.' . $extension;
             $newfoto->move(public_path() . '/img/alumni', $filename);

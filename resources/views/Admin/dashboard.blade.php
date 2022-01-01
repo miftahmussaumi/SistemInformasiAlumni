@@ -1,5 +1,4 @@
 @extends('Template.admin')
-
 @section('title','Welcome')
 @section('judul_atas')
 <h1>Selamat Datang di Sistem Informasi Alumni </h1>

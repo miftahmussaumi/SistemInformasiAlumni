@@ -242,7 +242,8 @@ class InformasiController extends Controller
     public function konfhpsinfo($id)
     {
         alert()->question('Anda yakin ingin Menghapus Informasi ini?')
-        ->showConfirmButton('<a href="/informasi-hapus-adm/' . $id . ')}}" class="text-white">Hapus</a>', '#3085d6')->toHtml()
+        ->showConfirmButton('<a href="/informasi-hapus-adm/' . $id . ')}}" class="text-white">Hapus</a>', '#3085d6')
+        ->toHtml()
         ->showCancelButton('Cancel', '#aaa')->reverseButtons();
         return back();
     }
