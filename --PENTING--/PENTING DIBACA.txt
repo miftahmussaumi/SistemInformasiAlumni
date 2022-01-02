@@ -1,0 +1,19 @@
+===PENTING===
+1. Dapat Login menggunakan akun admin yaitu 
+	username = admin@gmail.com
+	password = 12345
+2. Dapat melakukan pengajuan akun dahulu untuk login sebagai alumni
+3. Setelah melakukan pengajuan, silahkan acc akun dengan login sebagai admin
+4. Setelah itu akun alumni dapat dipakai
+
+===ATAU===
+6. Setelah import database, Login menggunakan akun alumni berikut :
+	1. miftah@gmail.com (12345)
+	2. dhiya@gmail.com (12345)
+
+===FILE DATABASE BERNAMA 'tb_ppsi'===
+
+===JIKA ERROR DALAM CLONE===
+Lakukan install Sweet alert dengan mengetikkan
+--->  composer require realrashid/sweet-alert
+pada terminal 
